@@ -23,3 +23,15 @@ def fill_missing_numeric(df):
                 # fill the missing values with the median
                 df[label] = content.fillna(content.median())
  ```
+## Fill and Tune Categorical Values
+
+```
+def fill_and_tune_cat(df):
+    for label, content in df.items():
+        if not pd.api.types.is_numeric_dtype(content):
+                # see which columns were filled
+                df[label+"_is_missing"] = pd.isnull(content)
+                # change to numerical, + 1 since pandas assigns -1
+                df[label] = pd.Categorical(content).codes + 1
+                
+```
