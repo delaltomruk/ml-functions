@@ -45,4 +45,24 @@ def fill_and_tune_cat(df):
 
     * Don’t use numerical data from the future (test set) to fill data from the past (training set).
 
-
+## Fitting Different Models (regression example)
+```python
+models = { "Lasso": Lasso(),
+         "Ridge": Ridge(),
+         "RandomForestRegressor": RandomForestRegressor()}
+         
+         
+def fit_score(models, X_train, X_test, y_train, y_test):
+    """
+    Fit and evaluate each ML model.
+    """
+    model_score = {}
+    
+    for model_name, model_initialized in models.items():
+        model_initialized.fit(X_train, y_train)
+        model_score[model_name] = model_initialized.score(X_test, y_test)
+    return model_score
+         
+model_score = fit_score(models, X_train, X_valid, y_train, y_valid)
+model_score
+```
