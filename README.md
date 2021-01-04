@@ -17,7 +17,6 @@ def to_cat(df):
 def fill_missing_numeric(df):
     for label, content in df.items():
         if pd.api.types.is_numeric_dtype(content):
-            if pd.isnull(content).sum():
                 # keep track of which rows we've filled with median
                 df[label+"_is_missing"] = pd.isnull(content)
                 # fill the missing values with the median
