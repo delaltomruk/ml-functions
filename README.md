@@ -34,25 +34,6 @@ def fill_and_tune_cat(df):
                 df[label] = pd.Categorical(content).codes + 1
                 
 ```
-
-## K-fold cross-validation
-```python
-# Import KFold
-from sklearn.model_selection import KFold
-
-# Create a KFold object
-kf = KFold(n_splits=3, shuffle=True, random_state=123)
-
-# Loop through each split
-fold = 0
-for train_index, test_index in kf.split(train):
-    # Obtain training and testing folds
-    cv_train, cv_test = train.iloc[train_index], train.iloc[test_index]
-    print('Fold: {}'.format(fold))
-    print('CV train shape: {}'.format(cv_train.shape))
-    print('Medium interest listings in CV train: {}\n'.format(sum(cv_train.interest_level == 'medium')))
-    fold += 1
-```
 ## Splitting Order
 
 * Encode/transform all categorical variables of your data (on the entire dataset, this ensures categorical variables are encoded the same across training/test sets, if you can't do this, make sure the training and test sets have the same column names).
